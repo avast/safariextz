@@ -51,7 +51,7 @@
     // pack and sign Safari extension
     //
     // @param safariextzName name of the pcaked extension
-    // @param safariextansionDir source directory
+    // @param safariextensionDir source directory
     // @param options {
     //          privateKey   Apple developer private key in PKCS8 format
     //          extensionCer Apple developer certificate in DER encoding

@@ -1,7 +1,7 @@
 {
   "name": "safariextz",
   "version": "1.0.0",
-  "description": "Safari extansion packer for node.js",
+  "description": "Safari extension packer for node.js",
   "main": "index.js",
   "repository": {
     "type": "git",

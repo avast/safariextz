@@ -1,6 +1,6 @@
 # safariextz
 
-Safari extansion packer for node.js
+Safari extension packer for node.js
 
 ## Environment Setup
 
