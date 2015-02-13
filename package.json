@@ -1,6 +1,6 @@
 {
   "name": "safariextz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Safari extension packer for node.js",
   "main": "index.js",
   "repository": {
