@@ -1,0 +1,20 @@
+{
+  "name": "safariextz",
+  "version": "1.0.0",
+  "description": "Safari extansion packer for node.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avast/safariextz.git"
+  },
+  "keywords": [
+    "safari",
+    "extension"
+  ],
+  "author": "Pavel Studeny",
+  "license": "BSD 3-Clause",
+  "bugs": {
+    "url": "https://github.com/avast/safariextz/issues"
+  },
+  "homepage": "https://github.com/avast/safariextz"
+}
