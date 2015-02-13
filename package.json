@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/avast/safariextz/issues"
   },
-  "homepage": "https://github.com/avast/safariextz"
+  "homepage": "https://github.com/avast/safariextz",
+  "dependencies": {
+    "when": "^3.7.2"
+  }
 }
