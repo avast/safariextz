@@ -1,6 +1,11 @@
 //  Safari Extension Packer
 //  Copyright 2015 AVAST Software s.r.o.
 //  http://www.avast.com
+//
+//  Packs Safari extensions without interacting with the browser.
+//  Works on MacOS, Linux and Windows, as long as you have xar 1.6.1 and openssl installed and in path.
+//  Neither xar 1.5 nor 1.7 will work, as they don't support the --sign option
+
 (function () {
     'use strict';
 
