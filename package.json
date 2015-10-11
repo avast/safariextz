@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/avast/safariextz",
   "dependencies": {
-    "when": "^3.7.2"
+    "when": "^3.7.2",
+    "xar-js": "^0.1.2"
   }
 }

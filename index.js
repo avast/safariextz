@@ -3,8 +3,6 @@
 //  http://www.avast.com
 //
 //  Packs Safari extensions without interacting with the browser.
-//  Works on MacOS, Linux and Windows, as long as you have xar 1.6.1 and openssl installed and in path.
-//  Neither xar 1.5 nor 1.7 will work, as they don't support the --sign option
 
 (function () {
     'use strict';
@@ -57,36 +55,17 @@
     //          extensionCer Apple developer certificate in DER encoding
     //          appleDevCer  Apple Worldwide Developer Relations Certification Authority
     //          appleRootCer Apple Root CA
-    //          temp [optional] temporary directory, will use cwd if not specified
     // }
     // @return promise
     // 
     function pack(safariextzName, safariextensionDir, options) {
-        var temp = options.temp;
-        if (!temp) {
-            temp = "";
-        }
+        var xarjsPath = path.resolve(require.resolve('xar-js'), '../../..');
+        var mynode = process.argv[0];
 
-        return exec('xar -cf ' + safariextzName + ' -C ' + path.dirname(safariextensionDir) + ' ' + path.basename(safariextensionDir))
-            .then(function () {
-                // find out the signature size by siging anything (in this case the key itself)
-                return exec('openssl dgst -sign ' + options.privateKey + ' -binary ' + options.privateKey, { hide_stdout: true, encoding: 'binary' });
-            })
-            .then(function (signature_buffer) {
-                return exec('xar --sign -f ' + safariextzName + ' --data-to-sign ' + path.join(temp, 'digest.dat') + ' --sig-size ' + signature_buffer.length +
-                     ' --cert-loc ' + options.extensionCer +
-                     ' --cert-loc ' + options.appleDevCer +
-                     ' --cert-loc ' + options.appleRootCer);
-            })
-            .then(function () {
-                return exec('openssl rsautl -sign -inkey ' + options.privateKey + ' -in ' + path.join(temp, 'digest.dat') + ' -out ' + path.join(temp, 'signature.dat'));
-            })
-            .then(function () {
-                return exec('xar --inject-sig ' + path.join(temp, 'signature.dat') + ' -f ' + safariextzName);
-            })
-            .then(function () {
-                fs.unlink(path.join(temp, 'signature.dat'));
-                fs.unlink(path.join(temp, 'digest.dat'));
+        return exec(mynode + ' ' + path.join(xarjsPath, 'xarjs') + ' create ' + safariextzName
+            + ' --cert ' + options.extensionCer + ' --cert ' + options.appleDevCer + ' --cert ' + options.appleRootCer
+            + ' --private-key ' + options.privateKey + ' ' + path.basename(safariextensionDir), {
+                cwd: path.dirname(safariextensionDir)
             });
     }
 
