@@ -15,13 +15,26 @@ Open Keychain Access and export your Safari Developer certificate to sd.p12. Ext
 openssl pkcs12 -in sd.p12 -nodes | openssl rsa -out key.pem
 ```
 
-and your certificate by
+However, this might output the private key in PKCS#1 format ("BEGIN RSA PRIVATE KEY").
+You want PKCS#8 ("BEGIN PRIVATE KEY"). Then you need to do one more step:
 
 ```
-openssl pkcs12 -in sd.p12 -nodes | openssl x509 -outform der -out dev.cer
+openssl pkcs12 -in sd.p12 -nodes | openssl rsa | openssl pkcs8 -topk8 -nocrypt -out key.pem
+```
+
+Then extact your certificate by
+
+```
+openssl pkcs12 -in sd.p12 -nodes | openssl x509 -out dev.cer
 ```
 
 The Apple root and developer certificates are located in this project *apple* directory. Or you can export them from your keychain.
+
+By the way, if you get an update Apple cerificate in DER (binary) form, you convert it into PEM by
+
+```
+openssl x509 -inform DER -outform PEM [-in <file>] [-out <file>]
+```
 
 ### Alternative: get all the certificates from an existing package
 
