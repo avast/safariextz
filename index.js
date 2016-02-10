@@ -62,7 +62,7 @@
         var xarjsPath = path.resolve(require.resolve('xar-js'), '../../..');
         var mynode = process.argv[0];
 
-        return exec(mynode + ' ' + path.join(xarjsPath, 'xarjs') + ' create ' + safariextzName
+        return exec('"' + mynode + '"' + ' ' + path.join(xarjsPath, 'xarjs') + ' create ' + safariextzName
             + ' --cert ' + options.extensionCer + ' --cert ' + options.appleDevCer + ' --cert ' + options.appleRootCer
             + ' --private-key ' + options.privateKey + ' ' + path.basename(safariextensionDir), {
                 cwd: path.dirname(safariextensionDir)
