@@ -22,7 +22,7 @@ You want PKCS#8 ("BEGIN PRIVATE KEY"). Then you need to do one more step:
 openssl pkcs12 -in sd.p12 -nodes | openssl rsa | openssl pkcs8 -topk8 -nocrypt -out key.pem
 ```
 
-Then extact your certificate by
+Then extract your certificate by
 
 ```
 openssl pkcs12 -in sd.p12 -nodes | openssl x509 -out dev.cer
